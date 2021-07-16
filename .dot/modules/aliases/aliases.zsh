@@ -26,4 +26,4 @@ alias dot='git --git-dir=$XDG_CONFIG_HOME/.dotgit/ --work-tree=$HOME'
 alias treedot='tree -ahC -L 4 --dirsfirst -I .dotgit'
 
 # Source other specific aliases files
-for file in ${0:a:h}/sub_*.zsh; source-compiled $file
+for file in ${0:a:h}/sub_*.zsh; source $file
