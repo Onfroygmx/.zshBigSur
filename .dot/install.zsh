@@ -34,6 +34,10 @@ mkdir -p $XDG_CONFIG_HOME
 git clone --bare https://github.com/Onfroygmx/.zshBigSur.git $HOME/.dotgit
 git --git-dir=$HOME/.dotgit --work-tree=$HOME checkout
 
+[[ ! -d "$XDG_CONFIG_HOME/modules/gnu-utils" ]] && mkdir -p $XDG_CONFIG_HOME/modules/gnu-utils
+printf "\n$fg[green]Download: ohmyzsh/gnu-utils$reset_color\n"
+curl -# https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/gnu-utils/gnu-utils.plugin.zsh > $XDG_CONFIG_HOME/modules/gnu-utils/gnu-utils.zsh
+
 ## Set zshenv file
 [[ ! -f $HOME/.zshenv ]] && [[ -f $ZDOTDIR/zshenv ]] && ln -s $ZDOTDIR/zshenv $HOME/.zshenv
 
@@ -46,3 +50,5 @@ git clone https://github.com/zdharma/zinit.git $XDG_CONFIG_HOME/zinit
 source $XDG_CONFIG_HOME/zinit/zinit.zsh
 
 zinit module build
+
+printf "\n$fg[yellow]Add -Wno-implicit-function-declaration to CFLAGS in zinit-autoload.zsh on macos X$reset_color\n"
