@@ -13,6 +13,14 @@ if [[ ! -o login ]]; then; source $HOME/.zshenv; fi
 #################################################
 autoload -U colors && colors
 
+## Set prompt
+#################
+setopt prompt_subst                     # enable substitution for prompt
+
+# Verry simple prompt
+PROMPT='%F{green}%n%f %F{cyan}%(4~|%-1~/.../%2~|%~)%f %F{magenta}%B>%b%f '
+RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
+
 # zinit
 declare -A ZINIT
 ZINIT[HOME_DIR]=$XDG_CONFIG_HOME/zinit
