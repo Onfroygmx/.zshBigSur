@@ -29,7 +29,7 @@ ZINIT[COMPLETIONS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/completions
 ZINIT[SNIPPETS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/snippets
 ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
 
-printf "\n$fg[green]Clone: Onfroygmx/.zsh$reset_color\n"
+printf "\n$fg[green]Clone: Onfroygmx/.zshBigSur$reset_color\n"
 mkdir -p $XDG_CONFIG_HOME
 git clone --bare https://github.com/Onfroygmx/.zshBigSur.git $HOME/.dotgit
 git --git-dir=$HOME/.dotgit --work-tree=$HOME checkout
@@ -40,6 +40,7 @@ git --git-dir=$HOME/.dotgit --work-tree=$HOME checkout
 find $XDG_CONFIG_HOME -type d -print0 | xargs -0 chmod 700
 mv .dotgit $XDG_CONFIG_HOME
 
+printf "\n$fg[green]Clone: zdharma/zinit$reset_color\n"
 git clone https://github.com/zdharma/zinit.git $XDG_CONFIG_HOME/zinit
 
 source $XDG_CONFIG_HOME/zinit/zinit.zsh
