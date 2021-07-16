@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+#!/bin/zsh
+#              _
+#      _______| |__   ___ _ ____   __
+#     |_  / __| '_ \ / _ \ '_ \ \ / /
+#    _ / /\__ \ | | |  __/ | | \ V /
+#   (_)___|___/_| |_|\___|_| |_|\_/
+#
+## Root .zshenv file for base variables
+### This file is sourced by all instances of Zsh, and thus,
+### it should be kept as small as possible and should only define environment variables.
+
+## Export work folders
+#################################################
+export XDG_CONFIG_HOME=$HOME/.dot
+
+export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+
+[[ -f $ZDOTDIR/.zshenv.local ]] && source $ZDOTDIR/.zshenv.local
