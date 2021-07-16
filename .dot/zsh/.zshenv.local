@@ -4,6 +4,8 @@
 ################################
 # EXPORT ENVIRONMENT DIRECTORY #
 ################################
+# Avoids macos to create session folders for history ...
+export SHELL_SESSIONS_DISABLE=1
 
 # Aur shared build folder
 export BUILDERS_HOME="/srv/builds"
