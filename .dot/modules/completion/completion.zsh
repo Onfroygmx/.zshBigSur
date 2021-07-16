@@ -1,10 +1,7 @@
 #!/bin/zsh
 
-fpath=($ZSH_USERS/completions/src $fpath)
 fpath+=(${0:a:h}/functions)
 autoload -Uz $fpath[-1]/*(.:t)
-
-run-compinit
 
 setopt complete_in_word    # Complete from both ends of a word.
 setopt always_to_end       # Move cursor to the end of a completed word.
