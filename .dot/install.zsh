@@ -9,3 +9,39 @@
 #
 # https://patorjk.com/software/taag/#p=display&c=bash&f=Doom&t=Install
 ### Install basic tools
+
+## Autoload zsh functions
+#################################################
+autoload -U colors && colors
+
+## Export work folders
+#################################################
+export XDG_CONFIG_HOME=$HOME/.dot
+
+export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
+
+# zinit
+declare -A ZINIT
+ZINIT[HOME_DIR]=$XDG_CONFIG_HOME/zinit
+ZINIT[BIN_DIR]=$XDG_CONFIG_HOME/zinit
+ZINIT[PLUGINS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/plugins
+ZINIT[COMPLETIONS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/completions
+ZINIT[SNIPPETS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/snippets
+ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
+
+printf "\n$fg[green]Clone: Onfroygmx/.zsh$reset_color\n"
+mkdir -p $XDG_CONFIG_HOME
+git clone --bare https://github.com/Onfroygmx/.zshBigSur.git $HOME/.dotgit
+git --git-dir=$HOME/.dotgit --work-tree=$HOME checkout
+
+## Set zshenv file
+[[ ! -f $HOME/.zshenv ]] && [[ -f $ZDOTDIR/zshenv ]] && ln -s $ZDOTDIR/zshenv $HOME/.zshenv
+
+find $XDG_CONFIG_HOME -type d -print0 | xargs -0 chmod 700
+mv .dotgit $XDG_CONFIG_HOME
+
+git clone https://github.com/zdharma/zinit.git $XDG_CONFIG_HOME/zinit
+
+source $XDG_CONFIG_HOME/zinit/zinit.zsh
+
+zinit module build
