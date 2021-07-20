@@ -5,7 +5,17 @@
 # EXPORT ENVIRONMENT DIRECTORY #
 ################################
 # Avoids macos to create session folders for history ...
-export SHELL_SESSIONS_DISABLE=1
+if [[ "$OSTYPE" == darwin* ]]; then
+
+  ## Disbale session management in macos
+  export SHELL_SESSIONS_DISABLE=1
+
+  ## Set locale properly for macos
+  if [[ -z "$LANG" ]]; then
+      export LANG='en_US.UTF-8'
+  fi
+
+fi
 
 # Aur shared build folder
 export BUILDERS_HOME="/srv/builds"

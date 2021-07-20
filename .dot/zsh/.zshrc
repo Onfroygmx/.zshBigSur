@@ -26,16 +26,17 @@ setopt prompt_subst                     # enable substitution for prompt
 PROMPT='%F{green}%n%f %F{cyan}%(4~|%-1~/.../%2~|%~)%f %F{magenta}%B>%b%f '
 RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
 
-
+## ZINIT
+## Load Local Modules
 zinit lucid light-mode for \
-        id-as"OMZ/gnu-utils"        $MODULE_DIR/gnu-utils \
+        id-as"module/gnupath"       $MODULE_DIR/gnupath \
         id-as"module/aliases"       $MODULE_DIR/aliases \
         id-as"module/colored-man"   $MODULE_DIR/colored-man \
         id-as"module/history"       $MODULE_DIR/history \
         id-as"module/dircolor"      $MODULE_DIR/dircolor \
         id-as"module/completion"    $MODULE_DIR/completion
 
-
+## Load external plugins
 zinit ice wait lucid blockf
 zinit light zsh-users/zsh-completions
 zinit ice wait lucid compile'{src/*.zsh,src/strategies/*}' atinit"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=69'" atload"_zsh_autosuggest_start"
