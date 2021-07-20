@@ -30,7 +30,7 @@ RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
 zinit ice lucid id-as"module/gnu-utils"
 zinit light $XDG_CONFIG_HOME/modules/gnu-utils
 
-zinit ice lucid for \
+zinit lucid light-mode for \
         id-as"module/aliases"       $MODULE_DIR/aliases \
         id-as"module/colored-man"   $MODULE_DIR/colored-man \
         id-as"module/history"       $MODULE_DIR/history \
