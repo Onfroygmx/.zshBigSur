@@ -27,10 +27,8 @@ PROMPT='%F{green}%n%f %F{cyan}%(4~|%-1~/.../%2~|%~)%f %F{magenta}%B>%b%f '
 RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
 
 
-zinit ice lucid id-as"OMZ/gnu-utils"
-zinit light $XDG_CONFIG_HOME/modules/gnu-utils
-
 zinit lucid light-mode for \
+        id-as"OMZ/gnu-utils"        $MODULE_DIR/gnu-utils \
         id-as"module/aliases"       $MODULE_DIR/aliases \
         id-as"module/colored-man"   $MODULE_DIR/colored-man \
         id-as"module/history"       $MODULE_DIR/history \
