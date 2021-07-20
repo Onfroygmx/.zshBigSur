@@ -13,6 +13,11 @@ if [[ ! -o login ]]; then; source $HOME/.zshenv; fi
 #################################################
 autoload -U colors && colors
 
+
+#typeset -g ZPLG_MOD_DEBUG=1
+module_path+=( "$XDG_CONFIG_HOME/zinit/zmodules/Src" )
+zmodload zdharma/zplugin
+
 ## Set prompt
 #################
 setopt prompt_subst                     # enable substitution for prompt
@@ -25,27 +30,12 @@ RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
 zinit ice lucid id-as"module/gnu-utils"
 zinit light $XDG_CONFIG_HOME/modules/gnu-utils
 
-MODULE_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/modules
-
-zinit is-snippet for \
-         if'[[ -r $MODULE_DIR/aliases/aliases.zsh ]]'         id-as"module/aliases"       $MODULE_DIR/aliases \
-         if'[[ -r $MODULE_DIR/colored-man/colored-man.zsh ]]' id-as"module/colored-man"   $MODULE_DIR/colored-man
-#         if'[[ -r $MODULE_DIR//.zsh_functions ]]' $HOME/.zsh_functions
-
-#zinit ice lucid id-as"module/aliases"
-#zinit light $XDG_CONFIG_HOME/modules/aliases
-
-#zinit ice lucid id-as"module/colored-man"
-#zinit light $XDG_CONFIG_HOME/modules/colored-man
-
-zinit ice lucid id-as"module/history"
-zinit light $XDG_CONFIG_HOME/modules/history
-
-zinit ice lucid id-as"module/dircolor"
-zinit light $XDG_CONFIG_HOME/modules/dircolor
-
-zinit ice lucid id-as"module/completion"
-zinit light $XDG_CONFIG_HOME/modules/completion
+zinit ice lucid for \
+        id-as"module/aliases"       $MODULE_DIR/aliases \
+        id-as"module/colored-man"   $MODULE_DIR/colored-man \
+        id-as"module/history"       $MODULE_DIR/history \
+        id-as"module/dircolor"      $MODULE_DIR/dircolor \
+        id-as"module/completion"    $MODULE_DIR/completion
 
 
 zinit ice wait lucid blockf
