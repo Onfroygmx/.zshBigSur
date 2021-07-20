@@ -44,3 +44,28 @@ export LESS='-g -i -M -R -S -w -z-4'
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+
+f [[ ! -f $XDG_CONFIG_HOME/zinit/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$XDG_CONFIG_HOME/zinit" && command chmod g-rwX "$XDG_CONFIG_HOME/zinit"
+    command git clone https://github.com/zdharma/zinit "$XDG_CONFIG_HOME/zinit" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+# zinit
+declare -A ZINIT
+ZINIT[HOME_DIR]=$XDG_CONFIG_HOME/zinit
+ZINIT[BIN_DIR]=$XDG_CONFIG_HOME/zinit
+ZINIT[PLUGINS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/plugins
+ZINIT[COMPLETIONS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/completions
+ZINIT[SNIPPETS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/snippets
+ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
+
+source "$XDG_CONFIG_HOME/zinit/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+typeset -g ZPLG_MOD_DEBUG=1
+module_path+=( "$XDG_CONFIG_HOME/zinit/zmodules/Src" )
+zmodload zdharma/zplugin

@@ -21,27 +21,22 @@ setopt prompt_subst                     # enable substitution for prompt
 PROMPT='%F{green}%n%f %F{cyan}%(4~|%-1~/.../%2~|%~)%f %F{magenta}%B>%b%f '
 RPROMPT='%(?.%F{green}.%F{red}[%?] - )%B%D{%H:%M:%S}%b%f'
 
-# zinit
-declare -A ZINIT
-ZINIT[HOME_DIR]=$XDG_CONFIG_HOME/zinit
-ZINIT[BIN_DIR]=$XDG_CONFIG_HOME/zinit
-ZINIT[PLUGINS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/plugins
-ZINIT[COMPLETIONS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/completions
-ZINIT[SNIPPETS_DIR]="${XDG_CONFIG_HOME:-$HOME/.config}"/snippets
-ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
-
-source $XDG_CONFIG_HOME/zinit/zinit.zsh
-module_path+=( "$XDG_CONFIG_HOME/zinit/zmodules/Src" )
-zmodload zdharma/zplugin
 
 zinit ice lucid id-as"module/gnu-utils"
 zinit light $XDG_CONFIG_HOME/modules/gnu-utils
 
-zinit ice lucid id-as"module/aliases"
-zinit light $XDG_CONFIG_HOME/modules/aliases
+MODULE_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/modules
 
-zinit ice lucid id-as"module/colored-man"
-zinit light $XDG_CONFIG_HOME/modules/colored-man
+zinit is-snippet for \
+         if'[[ -r $MODULE_DIR/aliases/aliases.zsh ]]'         id-as"module/aliases"       $MODULE_DIR/aliases \
+         if'[[ -r $MODULE_DIR/colored-man/colored-man.zsh ]]' id-as"module/colored-man"   $MODULE_DIR/colored-man
+#         if'[[ -r $MODULE_DIR//.zsh_functions ]]' $HOME/.zsh_functions
+
+#zinit ice lucid id-as"module/aliases"
+#zinit light $XDG_CONFIG_HOME/modules/aliases
+
+#zinit ice lucid id-as"module/colored-man"
+#zinit light $XDG_CONFIG_HOME/modules/colored-man
 
 zinit ice lucid id-as"module/history"
 zinit light $XDG_CONFIG_HOME/modules/history
